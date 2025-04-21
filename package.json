@@ -1,6 +1,6 @@
 {
   "name": "use-back-stack-overlay",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "PWA 스타일 UI 오버레이를 브라우저 뒤로가기로 관리할 수 있는 React Hook",
   "main": "dist/useDrawerCloseNotAllBack.js",
   "types": "dist/useDrawerCloseNotAllBack.d.ts",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/use-back-stack-overlay.git"
+    "url": "git+https://github.com/shinjaewk/use-back-stack-overlay.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/use-back-stack-overlay/issues"
+    "url": "https://github.com/shinjaewk/use-back-stack-overlay/issues"
   },
-  "homepage": "https://github.com/yourusername/use-back-stack-overlay#readme",
+  "homepage": "https://github.com/shinjaewk/use-back-stack-overlay#readme",
   "keywords": [
     "react",
     "nextjs",
