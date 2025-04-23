@@ -1,6 +1,6 @@
 {
   "name": "use-back-stack-overlay",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "PWA 스타일 UI 오버레이를 브라우저 뒤로가기로 관리할 수 있는 React Hook",
   "main": "dist/useDrawerCloseNotAllBack.js",
   "types": "dist/useDrawerCloseNotAllBack.d.ts",

@@ -1,55 +1,55 @@
 # 🚀 useBackStackOverlay
 
-> PWA 스타일의 React Hook으로, 모달이나 드로어 등 오버레이 UI를 브라우저 뒤로가기 스택처럼 제어할 수 있습니다.
+> A React Hook in PWA style that allows you to manage overlay UIs such as modals or drawers with the browser's back button.
 
 [![npm version](https://img.shields.io/npm/v/use-back-stack-overlay.svg)](https://www.npmjs.com/package/use-back-stack-overlay)
 
-## 📱 데모 비교
+## 📱 Demo Comparison
 
 <table>
   <tr>
-    <td align="center"><b>적용 전</b></td>
-    <td align="center"><b>적용 후</b></td>
+    <td align="center"><b>Before</b></td>
+    <td align="center"><b>After</b></td>
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/14df3fff-92eb-4f29-aebb-efc2e96d26e7" alt="적용 전" width="100%">
+      <img src="https://github.com/user-attachments/assets/14df3fff-92eb-4f29-aebb-efc2e96d26e7" alt="Before" width="100%">
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/1d6c74d3-3e32-4ad8-9cd4-d961fa3ff1b2" alt="적용 후" width="100%">
+      <img src="https://github.com/user-attachments/assets/1d6c74d3-3e32-4ad8-9cd4-d961fa3ff1b2" alt="After" width="100%">
     </td>
   </tr>
   <tr>
-    <td align="center">뒤로가기 시 모달이 남아있습니다</td>
-    <td align="center">뒤로가기로 모달 닫기가 가능합니다</td>
+    <td align="center">Modals remain open when going back</td>
+    <td align="center">Modals can be closed with back button</td>
   </tr>
 </table>
 
-## ✨ 주요 기능
+## ✨ Key Features
 
-- 🔙 브라우저의 뒤로가기 버튼으로 모달, 드로어 등의 UI를 닫을 수 있습니다
-- 📚 여러 개의 오버레이가 열려 있을 때 가장 최근에 열린 것부터 순서대로 닫힙니다
-- 📱 PWA와 같은 모바일 앱 경험을 웹에서 제공합니다
-- ⚛️ Next.js 및 React와 호환됩니다
+- 🔙 Close modals, drawers, and other UI elements with the browser's back button
+- 📚 When multiple overlays are open, they are closed in reverse order (last opened first)
+- 📱 Provides a mobile app experience on the web similar to PWAs
+- ⚛️ Compatible with Next.js and React
 
-## 📦 설치 방법
+## 📦 Installation
 
 ```bash
 npm install use-back-stack-overlay
 ```
 
-## 🔍 사용 방법
+## 🔍 Usage
 
 ```jsx
 import { useState } from "react";
 import { useHistoryBackDrawer } from "use-back-stack-overlay";
 
 function App() {
-  // 드로어 상태 관리
+  // Drawer state management
   const [isDrawer1Open, setIsDrawer1Open] = useState(false);
   const [isDrawer2Open, setIsDrawer2Open] = useState(false);
 
-  // 훅 사용
+  // Using the hook
   useHistoryBackDrawer([
     { isOpen: isDrawer1Open, setIsOpen: setIsDrawer1Open },
     { isOpen: isDrawer2Open, setIsOpen: setIsDrawer2Open },
@@ -57,20 +57,20 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => setIsDrawer1Open(true)}>드로어 1 열기</button>
-      <button onClick={() => setIsDrawer2Open(true)}>드로어 2 열기</button>
+      <button onClick={() => setIsDrawer1Open(true)}>Open Drawer 1</button>
+      <button onClick={() => setIsDrawer2Open(true)}>Open Drawer 2</button>
 
       {isDrawer1Open && (
         <div className="drawer">
-          <h2>드로어 1</h2>
-          <button onClick={() => setIsDrawer1Open(false)}>닫기</button>
+          <h2>Drawer 1</h2>
+          <button onClick={() => setIsDrawer1Open(false)}>Close</button>
         </div>
       )}
 
       {isDrawer2Open && (
         <div className="drawer">
-          <h2>드로어 2</h2>
-          <button onClick={() => setIsDrawer2Open(false)}>닫기</button>
+          <h2>Drawer 2</h2>
+          <button onClick={() => setIsDrawer2Open(false)}>Close</button>
         </div>
       )}
     </div>
@@ -78,35 +78,35 @@ function App() {
 }
 ```
 
-## 🛠️ 개발 환경 설정
+## 🛠️ Development Setup
 
 ```bash
-# 저장소 클론
+# Clone the repository
 git clone https://github.com/mrpumpkin98/use-Back-stack-close.git
 cd use-back-stack-overlay
 
-# 의존성 설치
+# Install dependencies
 npm install
 
-# 빌드
+# Build
 npm run build
 ```
 
-## 📋 예제 실행하기
+## 📋 Running Examples
 
 ```bash
-# 저장소 클론 후 examples 디렉토리로 이동
+# After cloning the repository, navigate to the examples directory
 cd examples
 
-# 의존성 설치
+# Install dependencies
 npm install
 
-# 개발 서버 실행
+# Run the development server
 npm run dev
 ```
 
-브라우저에서 `http://localhost:3000`으로 접속하여 예제를 확인할 수 있습니다.
+Access the example by visiting `http://localhost:3000` in your browser.
 
-## 🤝 기여하기
+## 🤝 Contributing
 
-이슈와 풀 리퀘스트는 환영합니다. 대규모 변경사항은 먼저 이슈를 등록해 주세요.
+Issues and pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
