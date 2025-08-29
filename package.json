@@ -1,42 +1,42 @@
 {
-  "name": "use-back-stack-overlay",
-  "version": "1.0.8",
-  "description": "A React Hook in PWA style that allows you to manage overlay UIs such as modals or drawers with the browser's back button.",
-  "main": "dist/useDrawerCloseNotAllBack.js",
-  "types": "dist/useDrawerCloseNotAllBack.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrpumpkin98/use-Back-stack-close"
-  },
-  "bugs": {
-    "url": "https://github.com/mrpumpkin98/use-Back-stack-close/issues"
-  },
-  "homepage": "https://github.com/mrpumpkin98/use-Back-stack-close#readme",
-  "keywords": [
-    "react",
-    "nextjs",
-    "pwa",
-    "hook",
-    "modal",
-    "drawer",
-    "history",
-    "overlay"
-  ],
-  "author": "신재욱",
-  "license": "MIT",
-  "peerDependencies": {
-    "next": "^12.0.0 || ^13.0.0 || ^14.0.0",
-    "react": "^17.0.0 || ^18.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.1",
-    "@types/react": "^19.1.2",
-    "typescript": "^5.8.3"
-  }
+   "name": "use-back-stack-overlay",
+   "version": "1.0.9",
+   "description": "A React Hook in PWA style that allows you to manage overlay UIs such as modals or drawers with the browser's back button.",
+   "main": "dist/useDrawerCloseNotAllBack.js",
+   "types": "dist/useDrawerCloseNotAllBack.d.ts",
+   "files": [
+      "dist"
+   ],
+   "scripts": {
+      "build": "tsc"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mrpumpkin98/use-Back-stack-close"
+   },
+   "bugs": {
+      "url": "https://github.com/mrpumpkin98/use-Back-stack-close/issues"
+   },
+   "homepage": "https://github.com/mrpumpkin98/use-Back-stack-close#readme",
+   "keywords": [
+      "react",
+      "nextjs",
+      "pwa",
+      "hook",
+      "modal",
+      "drawer",
+      "history",
+      "overlay"
+   ],
+   "author": "신재욱",
+   "license": "MIT",
+   "peerDependencies": {
+      "next": "^12.0.0 || ^13.0.0 || ^14.0.0",
+      "react": "^17.0.0 || ^18.0.0"
+   },
+   "devDependencies": {
+      "@types/node": "^22.14.1",
+      "@types/react": "^19.1.2",
+      "typescript": "^5.8.3"
+   }
 }
