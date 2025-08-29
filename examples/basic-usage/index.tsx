@@ -102,9 +102,9 @@ export default function App() {
 
   // 백 스택 관리 훅 사용
   useHistoryBackDrawer([
-    // { isOpen: isDrawer1Open, setIsOpen: setIsDrawer1Open },
-    // { isOpen: isDrawer2Open, setIsOpen: setIsDrawer2Open },
-    // { isOpen: isModalOpen, setIsOpen: setIsModalOpen },
+    { isOpen: isDrawer1Open, setIsOpen: setIsDrawer1Open },
+    { isOpen: isDrawer2Open, setIsOpen: setIsDrawer2Open },
+    { isOpen: isModalOpen, setIsOpen: setIsModalOpen },
   ]);
 
   return (

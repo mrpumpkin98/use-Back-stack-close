@@ -1,71 +1,81 @@
 import { useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/router";
 
 interface DrawerState {
-  isOpen: any;
-  setIsOpen: (isOpen: any) => void;
+   isOpen: boolean;
+   setIsOpen: (isOpen: boolean) => void;
 }
 
 export function useHistoryBackDrawer(drawers: DrawerState[]) {
-  const router = useRouter();
-  const prevOpenState = useRef(false);
-  const prevDrawerStates = useRef(new Array(drawers.length).fill(false)); // 각 Drawer의 이전 상태 저장
+   const prevDrawerStates = useRef<boolean[]>([]);
+   const isInitialized = useRef(false);
 
-  // Drawer가 닫힐 때 히스토리 처리
-  const handleClose = useCallback(() => {
-    if (window.history.state?.type === "drawer") {
-      window.history.back();
-    }
-  }, []);
+   // 브라우저 환경 체크
+   const isBrowser = typeof window !== "undefined";
 
-  useEffect(() => {
-    const isAnyDrawerOpen = drawers.some((drawer) => drawer.isOpen);
-
-    // 새로 열린 Drawer 확인 및 히스토리 추가
-    drawers.forEach((drawer, index) => {
-      if (drawer.isOpen && !prevDrawerStates.current[index]) {
-        // 현재 URL의 쿼리 파라미터 유지
-        const currentQuery = router.query;
-        const currentPath = router.asPath.split("?")[0];
-        const queryString = new URLSearchParams(
-          router.asPath.split("?")[1] || ""
-        ).toString();
-
-        // 히스토리에 현재 경로와 쿼리 파라미터 추가
-        window.history.pushState(
-          { type: "drawer" },
-          "",
-          queryString ? `${currentPath}?${queryString}` : currentPath
-        );
+   // drawers 배열의 길이가 변경될 때만 이전 상태 배열 재생성
+   const drawerCount = drawers.length;
+   useEffect(() => {
+      if (prevDrawerStates.current.length !== drawerCount) {
+         prevDrawerStates.current = new Array(drawerCount).fill(false);
       }
-      prevDrawerStates.current[index] = drawer.isOpen; // 현재 상태 저장
-    });
+   }, [drawerCount]);
 
-    // Drawer가 닫힌 경우 (외부 터치로 인한 닫힘)
-    if (!isAnyDrawerOpen) {
-      handleClose();
-    }
+   // Drawer가 닫힐 때 히스토리 처리
+   const handleClose = useCallback(() => {
+      if (!isBrowser) return;
 
-    // 이전 상태 업데이트
-    prevOpenState.current = isAnyDrawerOpen;
-
-    const handlePopState = () => {
-      // 가장 마지막에 열린 Drawer 찾기
-      const openDrawer = drawers.find((drawer) => drawer.isOpen);
-
-      // 열린 Drawer가 있으면 해당 Drawer만 닫기
-      if (openDrawer) {
-        openDrawer.setIsOpen(false);
+      if (window.history.state?.type === "drawer") {
+         window.history.back();
       }
-    };
+   }, [isBrowser]);
 
-    window.addEventListener("popstate", handlePopState);
+   // popstate 이벤트 핸들러를 메모화
+   const handlePopState = useCallback(() => {
+      // 가장 마지막에 열린 Drawer 찾기 (역순으로 검색하여 최근 열린 것부터)
+      for (let i = drawers.length - 1; i >= 0; i--) {
+         if (drawers[i].isOpen) {
+            drawers[i].setIsOpen(false);
+            break; // 하나만 닫고 종료
+         }
+      }
+   }, [drawers]);
 
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [drawers, handleClose, router]);
+   useEffect(() => {
+      if (!isBrowser) return;
 
-  // onClose 핸들러 반환
-  return handleClose;
+      const isAnyDrawerOpen = drawers.some((drawer) => drawer.isOpen);
+
+      // 새로 열린 Drawer 확인 및 히스토리 추가
+      drawers.forEach((drawer, index) => {
+         const wasOpen = prevDrawerStates.current[index];
+         const isOpen = drawer.isOpen;
+
+         // 새로 열린 경우에만 히스토리 추가
+         if (isOpen && !wasOpen) {
+            const currentPath = window.location.pathname;
+            const currentSearch = window.location.search;
+
+            // 히스토리에 현재 경로와 쿼리 파라미터 추가
+            window.history.pushState({ type: "drawer" }, "", currentPath + currentSearch);
+         }
+
+         // 현재 상태 저장
+         prevDrawerStates.current[index] = isOpen;
+      });
+
+      // 초기화 완료 표시
+      if (!isInitialized.current) {
+         isInitialized.current = true;
+      }
+
+      // popstate 이벤트 리스너 등록
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+         window.removeEventListener("popstate", handlePopState);
+      };
+   }, [drawers, handlePopState, isBrowser]);
+
+   // onClose 핸들러 반환
+   return handleClose;
 }

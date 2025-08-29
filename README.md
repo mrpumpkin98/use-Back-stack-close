@@ -27,10 +27,10 @@
 
 ## ✨ Key Features
 
-- 🔙 Close modals, drawers, and other UI elements with the browser's back button
-- 📚 When multiple overlays are open, they are closed in reverse order (last opened first)
-- 📱 Provides a mobile app experience on the web similar to PWAs
-- ⚛️ Compatible with Next.js and React
+-  🔙 Close modals, drawers, and other UI elements with the browser's back button
+-  📚 When multiple overlays are open, they are closed in reverse order (last opened first)
+-  📱 Provides a mobile app experience on the web similar to PWAs
+-  ⚛️ Compatible with Next.js and React
 
 ## 📦 Installation
 
@@ -45,68 +45,35 @@ import { useState } from "react";
 import { useHistoryBackDrawer } from "use-back-stack-overlay";
 
 function App() {
-  // Drawer state management
-  const [isDrawer1Open, setIsDrawer1Open] = useState(false);
-  const [isDrawer2Open, setIsDrawer2Open] = useState(false);
+   // Drawer state management
+   const [isDrawer1Open, setIsDrawer1Open] = useState(false);
+   const [isDrawer2Open, setIsDrawer2Open] = useState(false);
 
-  // Using the hook
-  useHistoryBackDrawer([
-    { isOpen: isDrawer1Open, setIsOpen: setIsDrawer1Open },
-    { isOpen: isDrawer2Open, setIsOpen: setIsDrawer2Open },
-  ]);
+   // Using the hook
+   useHistoryBackDrawer([
+      { isOpen: isDrawer1Open, setIsOpen: setIsDrawer1Open },
+      { isOpen: isDrawer2Open, setIsOpen: setIsDrawer2Open },
+   ]);
 
-  return (
-    <div>
-      <button onClick={() => setIsDrawer1Open(true)}>Open Drawer 1</button>
-      <button onClick={() => setIsDrawer2Open(true)}>Open Drawer 2</button>
+   return (
+      <div>
+         <button onClick={() => setIsDrawer1Open(true)}>Open Drawer 1</button>
+         <button onClick={() => setIsDrawer2Open(true)}>Open Drawer 2</button>
 
-      {isDrawer1Open && (
-        <div className="drawer">
-          <h2>Drawer 1</h2>
-          <button onClick={() => setIsDrawer1Open(false)}>Close</button>
-        </div>
-      )}
+         {isDrawer1Open && (
+            <div className="drawer">
+               <h2>Drawer 1</h2>
+               <button onClick={() => setIsDrawer1Open(false)}>Close</button>
+            </div>
+         )}
 
-      {isDrawer2Open && (
-        <div className="drawer">
-          <h2>Drawer 2</h2>
-          <button onClick={() => setIsDrawer2Open(false)}>Close</button>
-        </div>
-      )}
-    </div>
-  );
+         {isDrawer2Open && (
+            <div className="drawer">
+               <h2>Drawer 2</h2>
+               <button onClick={() => setIsDrawer2Open(false)}>Close</button>
+            </div>
+         )}
+      </div>
+   );
 }
 ```
-
-## 🛠️ Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/mrpumpkin98/use-Back-stack-close.git
-cd use-back-stack-overlay
-
-# Install dependencies
-npm install
-
-# Build
-npm run build
-```
-
-## 📋 Running Examples
-
-```bash
-# After cloning the repository, navigate to the examples directory
-cd examples
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-```
-
-Access the example by visiting `http://localhost:3000` in your browser.
-
-## 🤝 Contributing
-
-Issues and pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
